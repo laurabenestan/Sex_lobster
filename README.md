@@ -29,11 +29,9 @@ We detect a subtle difference, males being less relative than female, but it tur
 We decide to look for population structure using the set of SNPs putatively under divergent selection by performing the script `adaptive_structure.R`.
 When we look at these highly differentiated regions of the genome, we highlight that 272 SNPs are linked to gender information, meaning that these markers are probably located to sex chromosome (hereafter called sex-linked markers) and in autosome.
 
-<img align="center" height="600" src="adaptive_structure.png"></img>
+<img align="center" height="600" src="03-population-structure/adaptive_structure.png"></img>
 
 ## 4. Sex-linked markers
-
-<img align="center" height="600" src="adaptive_structure.png"></img>
 
 Genetic diversity, which reflects the potential of a species to cope with environmental change, is significantly different if we include this sex-linked markers than if we remove it, meaning that, without gender information (thanks for collecting it!), we may have biased our genetic diversity estimates and then make wrong recommendation for conservation planning.
 

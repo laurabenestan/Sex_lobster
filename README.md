@@ -33,7 +33,7 @@ When we look at these highly differentiated regions of the genome, we highlight 
 
 ## 4. Sex-linked markers
 
-Genetic diversity, which reflects the potential of a species to cope with environmental change, is significantly different if we include this sex-linked markers than if we remove it, meaning that, without gender information (thanks for collecting it!), we may have biased our genetic diversity estimates and then make wrong recommendation for conservation planning.
+Genetic diversity, which reflects the potential of a species to cope with environmental change, is significantly different if we include this sex-linked markers than if we remove it, meaning that, without gender information, we may have biased our genetic diversity estimates and then make wrong recommendation for conservation planning.
 
 ## 5. Seascape genomics
 

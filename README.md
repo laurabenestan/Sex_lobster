@@ -40,11 +40,15 @@ Genetic diversity, which reflects the potential of a species to cope with enviro
 We remove sex-linked markers and consider each sex separately (female and male) to perform a distance-based analysis available in the package [vegan](https://www.rdocumentation.org/packages/vegan/versions/2.4-2/topics/capscale) with the script `dbRDA-per-sex.R`. 
 We find that males seems more influenced by the seascape than females, with seascape features explaining more genomic variation in males than in females (21% was explained by seascape features versus 12% in female). 
 
+Males tend to disperse more during the fishing season (April-May), and there is more competition for males than females during the mating season (August). We have individuals collected from April to December 2017, so we cover both seasons (fishing season and later, mating season). This particular behaviour (higher dispersal rate, more competition) of the males may partly explain why we found that the environment has a greater influence on the male than on the female. 
+
 <img align="center" height="600" src="04-dbrda/db-rda.png"></img>
 
 ## 6. Analysis of genetic diversity 
 
 We uncover a difference in genetic diversity between males and females, females show higher genetic diversity than male, even when we consider non sex-linked markers.
-We hypothesize that fishing may have impacted the population differently, with males being more fished than female, which result in a loss of genetic diversity higher for male than for female.
+We hypothesize that fishing pressure may be greater on male lobsters than on female lobsters, which may explain the loss of genetic diversity estimated for this sex compared to females 
 
-<img align="center" height="600" src="05-genetic-diversity/het_adaptive_sex.png"></img>
+<img align="center" height="600" src="06-genetic-diversity/het_adaptive_sex.png"></img>
+
+

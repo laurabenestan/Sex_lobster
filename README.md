@@ -22,14 +22,14 @@ This result consider all the putatively neutral genetic markers (25230 SNPs).
 Then, we investigate the hypothesis of sex-bias dispersal by calculating the degree of relatedness for male and female, separately.
 We detect a subtle difference, males being less relative than female, but it turns out that this difference is not significant (Wilcoxon test, P-value = 0.22).
 
-<img align="center" height="600" src="03-population-structure/relatedness.png"></img>
+<img align="center" height="600" src="03-population_structure/relatedness.png"></img>
 
 ### Adaptive
 
 We decide to look for population structure using the set of SNPs putatively under divergent selection by performing the script `adaptive_structure.R`.
 When we look at these highly differentiated regions of the genome, we highlight that 272 SNPs are linked to gender information, meaning that these markers are probably located to sex chromosome (hereafter called sex-linked markers) and in autosome.
 
-<img align="center" height="600" src="03-population-structure/adaptive_structure.png"></img>
+<img align="center" height="600" src="03-population_structure/adaptive_structure.png"></img>
 
 ## 4. Sex-linked markers
 

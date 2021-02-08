@@ -51,6 +51,12 @@ male <- habitat[which(habitat$Sex == "Male" ), "Label"]
 genind_M <- genind[!row.names(genind@tab) %in% female]
 genind_F <- genind[!row.names(genind@tab) %in% male]
 
+### Remove 20 males from the dataset at random to have the same number of individuals for both sexes
+removeM <- row.names(genind_M1@tab)[sample(seq(from = 1, to = 101, by = 1), size = 20, replace = FALSE)]
+genind_M <- genind_M1[!row.names(genind_M1@tab) %in% removeM]
+
+male <- row.names(genind_M@tab)
+
 ### Calculate Euclidean distances
 distgenEUCL_M <- dist(genind_M, method = 
                       "euclidean", diag = FALSE, upper = FALSE, p = 2)

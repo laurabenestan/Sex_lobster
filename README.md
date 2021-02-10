@@ -51,4 +51,20 @@ We hypothesize that fishing pressure may be greater on male lobsters than on fem
 
 <img align="center" height="600" src="06-genetic_diversity/het_adaptive_sex.png"></img>
 
+To complement this analysis, we estimate the effective size of the females and males separately, using [COLONY](https://www.zsl.org/science/software/colony). 
 
+----------------------------------------------------------------------------------------------------
+Estimates by Colony full likelihood method : Assuming random mating
+----------------------------------------------------------------------------------------------------
+Female
+Ne      =         12960
+CI95(L) =          4325
+CI95(U) =    2147483647
+---------------
+Male
+Ne      =    2147483647
+CI95(L) =             1
+CI95(U) =    2147483647
+---------------
+
+We observed a higher Ne values for male than female, but a lower interval values (1) than female (4325).

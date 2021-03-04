@@ -68,3 +68,33 @@ Estimates by Colony full likelihood method : Assuming random mating
 ---------------
 
 We observed a higher Ne values for male than female, but a lower interval values (1) than female (4325).
+
+## 7. Bottleneck test using dadi
+
+First **create a vcf that contains all SNPs** called with STACKS. 
+Filter for missing values and depth coverage using the following command:
+
+``` {r}, engine="bash",
+vcftools --vcf yourvcffile --missing-max 0.95 --min-meanDP 20
+```
+
+Then, estimate allele frequencies using this filtered VCF.
+``` {r}, engine="bash",
+vcftools --freq --vcf tonvcf
+```
+
+Finally transform the allele frequencies output with the `.freq`extension from vcftools to an approriate dadi format with bash langaguage and a R script.
+
+``` {r}, engine="bash",
+sed 's/:/\t/g' tonvcf.frq |sed 1d > tonvcf2.frq #pour remplacer les ":" et supprimer le header
+```
+
+Run the script R with the following command:
+
+``` {r}, engine="bash",
+Rscript spectre_1pop.R yourvcf2.frq
+```
+
+Convert the file in input for dadi and visualize the file according to https://dadi.readthedocs.io/en/latest/user-guide/installation/
+Open python and run the script `dadi_creation_spectre1pop.py
+

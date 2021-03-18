@@ -15,18 +15,10 @@ We discover a total of 833 snps putatively under divergent selection out of 8337
 
 ## 3. Population structure
 
-### Neutral
+### Adaptive population structure
 
-Using ADMIXTURE and a Discriminant Analysis of Principal Components (DAPC) available in the [adegenet package](https://www.rdocumentation.org/packages/adegenet/versions/2.0.1), we run our script `population_structure_pal.T`. 
-We observe complete panmixia, which is likely due to the life history traits of this species (e.g. long pelagic duration phase). 
-This result consider all the putatively neutral genetic markers (25230 SNPs).
-
-Then, we investigate the hypothesis of sex-bias dispersal by calculating the degree of relatedness for male and female, separately.
-We detect a subtle difference, males being less relative than female, but it turns out that this difference is not significant (Wilcoxon test, P-value = 0.22).
-
-<img align="center" height="600" src="03-population_structure/relatedness.png"></img>
-
-### Adaptive
+Using ADMIXTURE and a Discriminant Analysis of Principal Components (DAPC) available in the [adegenet package](https://www.rdocumentation.org/packages/adegenet/versions/2.0.1), we run our script `adaptive_structure`. 
+We observe complete panmixia, which is likely due to the life history traits of this species (e.g. long pelagic duration phase). This result consider all the putatively neutral genetic markers (25230 SNPs).
 
 We decide to look for population structure using the set of SNPs putatively under divergent selection by performing the script `adaptive_structure.R`.
 When we look at these highly differentiated regions of the genome, we highlight that 272 SNPs are linked to gender information, meaning that these markers are probably located to sex chromosome (hereafter called sex-linked markers) and in autosome.
@@ -36,6 +28,12 @@ When we look at these highly differentiated regions of the genome, we highlight 
 ## 4. Sex-linked markers
 
 Genetic diversity, which reflects the potential of a species to cope with environmental change, is significantly different if we include this sex-linked markers than if we remove it, meaning that, without gender information, we may have biased our genetic diversity estimates and then make wrong recommendation for conservation planning.
+
+
+Then, we investigate the hypothesis of sex-bias dispersal by calculating the degree of relatedness for male and female, separately.
+We detect a subtle difference, males being less relative than female, but it turns out that this difference is not significant (Wilcoxon test, P-value = 0.10).
+
+<img align="center" height="600" src="03-population_structure/relatedness.png"></img>
 
 ## 5. Seascape genomics
 

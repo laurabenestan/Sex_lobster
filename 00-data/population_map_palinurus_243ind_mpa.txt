@@ -1,0 +1,244 @@
+INDIVIDUALS	STRATA
+pal_bal_001	Norte  de  Menorca
+pal_bal_002	Norte  de  Menorca
+pal_bal_003	Norte  de  Menorca
+pal_bal_004	Norte  de  Menorca
+pal_bal_005	Norte  de  Menorca
+pal_bal_006	Llevant  de  Mallorca
+pal_bal_007	Llevant  de  Mallorca
+pal_bal_008	Llevant  de  Mallorca
+pal_bal_009	Llevant  de  Mallorca
+pal_bal_010	Llevant  de  Mallorca
+pal_bal_012	Illes  Columbretes
+pal_bal_013	Illes  Columbretes
+pal_bal_014	Illes  Columbretes
+pal_bal_015	Illes  Columbretes
+pal_bal_016	Illes  Columbretes
+pal_bal_017	Illes  Columbretes
+pal_bal_018	Illes  Columbretes
+pal_bal_019	Illes  Columbretes
+pal_bal_020	Illes  Columbretes
+pal_bal_021	Illes  Columbretes
+pal_bal_022	Illes  Columbretes
+pal_bal_023	Illes  Columbretes
+pal_bal_024	Illes  Columbretes
+pal_bal_025	Illes  Columbretes
+pal_bal_026	Illes  Columbretes
+pal_bal_027	Illes  Columbretes
+pal_bal_028	Illes  Columbretes
+pal_bal_029	Illes  Columbretes
+pal_bal_030	Illes  Columbretes
+pal_bal_031	Illes  Columbretes
+pal_bal_032	Illes  Columbretes
+pal_bal_033	Illes  Columbretes
+pal_bal_036	Illes  Columbretes
+pal_bal_037	Illes  Columbretes
+pal_bal_038	Illes  Columbretes
+pal_bal_039	Illes  Columbretes
+pal_bal_040	Illes  Columbretes
+pal_bal_041	Illes  Columbretes
+pal_bal_042	Illes  Columbretes
+pal_bal_043	Illes  Columbretes
+pal_bal_044	Illes  Columbretes
+pal_bal_045	Illes  Columbretes
+pal_bal_046	Illes  Columbretes
+pal_bal_047	Illes  Columbretes
+pal_bal_049	Illes  Columbretes
+pal_bal_050	Illes  Columbretes
+pal_bal_051	Illes  Columbretes
+pal_bal_052	Illes  Columbretes
+pal_bal_053	Illes  Columbretes
+pal_bal_054	Illes  Columbretes
+pal_bal_055	Illes  Columbretes
+pal_bal_056	Illes  Columbretes
+pal_bal_057	Illes  Columbretes
+pal_bal_058	Illes  Columbretes
+pal_bal_059	Illes  Columbretes
+pal_bal_061	Norte  de  Menorca
+pal_bal_062	Norte  de  Menorca
+pal_bal_063	Norte  de  Menorca
+pal_bal_064	Norte  de  Menorca
+pal_bal_065	Norte  de  Menorca
+pal_bal_066	Norte  de  Menorca
+pal_bal_067	Llevant  de  Mallorca
+pal_bal_068	Llevant  de  Mallorca
+pal_bal_069	Llevant  de  Mallorca
+pal_bal_070	Llevant  de  Mallorca
+pal_bal_071	Llevant  de  Mallorca
+pal_bal_072	Llevant  de  Mallorca
+pal_bal_073	Norte  de  Menorca
+pal_bal_074	Norte  de  Menorca
+pal_bal_075	Norte  de  Menorca
+pal_bal_076	Llevant  de  Mallorca
+pal_bal_077	Llevant  de  Mallorca
+pal_bal_078	Llevant  de  Mallorca
+pal_bal_079	Norte  de  Menorca
+pal_bal_080	Norte  de  Menorca
+pal_bal_081	Norte  de  Menorca
+pal_bal_082	Llevant  de  Mallorca
+pal_bal_083	Llevant  de  Mallorca
+pal_bal_084	Llevant  de  Mallorca
+pal_bal_085	Llevant  de  Mallorca
+pal_bal_086	Llevant  de  Mallorca
+pal_bal_087	Llevant  de  Mallorca
+pal_bal_088	Llevant  de  Mallorca
+pal_bal_089	Llevant  de  Mallorca
+pal_bal_090	Llevant  de  Mallorca
+pal_bal_091	Llevant  de  Mallorca
+pal_bal_092	Llevant  de  Mallorca
+pal_bal_093	Norte  de  Menorca
+pal_bal_094	Norte  de  Menorca
+pal_bal_095	Norte  de  Menorca
+pal_bal_096	Norte  de  Menorca
+pal_bal_097	Norte  de  Menorca
+pal_bal_098	Norte  de  Menorca
+pal_bal_099	Llevant  de  Mallorca
+pal_bal_100	Llevant  de  Mallorca
+pal_bal_101	Llevant  de  Mallorca
+pal_bal_102	Norte  de  Menorca
+pal_bal_103	Norte  de  Menorca
+pal_bal_104	Norte  de  Menorca
+pal_bal_105	Cap  de  Creus
+pal_bal_106	Cap  de  Creus
+pal_bal_107	Cap  de  Creus
+pal_bal_108	Cap  de  Creus
+pal_bal_109	Cap  de  Creus
+pal_bal_110	Cap  de  Creus
+pal_bal_111	Cap  de  Creus
+pal_bal_112	Cap  de  Creus
+pal_bal_113	Cap  de  Creus
+pal_bal_114	Cap  de  Creus
+pal_bal_115	Cap  de  Creus
+pal_bal_116	Cap  de  Creus
+pal_bal_117	Cap  de  Creus
+pal_bal_118	Cap  de  Creus
+pal_bal_119	Cap  de  Creus
+pal_bal_120	Cap  de  Creus
+pal_bal_121	Cap  de  Creus
+pal_bal_122	Cap  de  Creus
+pal_bal_123	Cap  de  Creus
+pal_bal_124	Cap  de  Creus
+pal_bal_126	Cap  de  Creus
+pal_bal_127	Cap  de  Creus
+pal_bal_128	Cap  de  Creus
+pal_bal_129	Llevant  de  Mallorca
+pal_bal_130	Llevant  de  Mallorca
+pal_bal_132	Llevant  de  Mallorca
+pal_bal_133	Norte  de  Menorca
+pal_bal_134	Norte  de  Menorca
+pal_bal_135	Llevant  de  Mallorca
+pal_bal_136	Llevant  de  Mallorca
+pal_bal_137	Llevant  de  Mallorca
+pal_bal_138	Llevant  de  Mallorca
+pal_bal_139	Llevant  de  Mallorca
+pal_bal_140	Llevant  de  Mallorca
+pal_bal_141	Llevant  de  Mallorca
+pal_bal_143	Llevant  de  Mallorca
+pal_bal_144	Llevant  de  Mallorca
+pal_bal_145	Llevant  de  Mallorca
+pal_bal_146	Norte  de  Menorca
+pal_bal_147	Norte  de  Menorca
+pal_bal_148	Norte  de  Menorca
+pal_bal_149	Norte  de  Menorca
+pal_bal_150	Norte  de  Menorca
+pal_bal_151	Norte  de  Menorca
+pal_bal_152	Norte  de  Menorca
+pal_bal_153	Norte  de  Menorca
+pal_bal_154	Llevant  de  Mallorca
+pal_bal_155	Llevant  de  Mallorca
+pal_bal_156	Llevant  de  Mallorca
+pal_bal_157	Llevant  de  Mallorca
+pal_bal_158	Llevant  de  Mallorca
+pal_bal_159	Norte  de  Menorca
+pal_bal_160	Norte  de  Menorca
+pal_bal_161	Norte  de  Menorca
+pal_bal_162	Norte  de  Menorca
+pal_bal_163	Norte  de  Menorca
+pal_bal_164	Norte  de  Menorca
+pal_bal_165	Norte  de  Menorca
+pal_bal_166	Norte  de  Menorca
+pal_bal_167	Norte  de  Menorca
+pal_bal_168	Norte  de  Menorca
+pal_bal_169	Norte  de  Menorca
+pal_bal_170	Norte  de  Menorca
+pal_bal_171	Norte  de  Menorca
+pal_bal_172	Llevant  de  Mallorca
+pal_bal_173	Llevant  de  Mallorca
+pal_bal_174	Llevant  de  Mallorca
+pal_bal_175	Llevant  de  Mallorca
+pal_bal_176	Llevant  de  Mallorca
+pal_bal_177	Llevant  de  Mallorca
+pal_bal_178	Llevant  de  Mallorca
+pal_bal_179	Llevant  de  Mallorca
+pal_bal_180	Llevant  de  Mallorca
+pal_bal_181	Llevant  de  Mallorca
+pal_bal_182	Llevant  de  Mallorca
+pal_medit_001	Illes  Columbretes
+pal_medit_002	Illes  Columbretes
+pal_medit_003	Illes  Columbretes
+pal_medit_004	Illes  Columbretes
+pal_medit_005	Illes  Columbretes
+pal_medit_006	Illes  Columbretes
+pal_medit_007	Illes  Columbretes
+pal_spaAL_001	Illa  de  Tabarca
+pal_spaAL_002	Illa  de  Tabarca
+pal_spaAL_003	Illa  de  Tabarca
+pal_spaAL_004	Illa  de  Tabarca
+pal_spaAL_005	Illa  de  Tabarca
+pal_spaAL_006	Illa  de  Tabarca
+pan_fra_005	Cerbere  Banyuls
+pan_fra_006	Cerbere  Banyuls
+pan_fra_007	Cerbere  Banyuls
+pan_fra_008	Cerbere  Banyuls
+pan_fra_009	Cerbere  Banyuls
+pan_spaS_001	Cabo  de  Gata  Nijar
+pan_spaS_002	Cabo  de  Gata  Nijar
+pan_spaS_003	Cabo  de  Gata  Nijar
+pan_spaS_004	Cabo  de  Gata  Nijar
+pan_spaS_005	Cabo  de  Gata  Nijar
+pan_spaS_006	Cabo  de  Gata  Nijar
+pan_spaS_007	Cabo  de  Gata  Nijar
+pan_spaS_008	Cabo  de  Gata  Nijar
+pan_spaS_009	Cabo  de  Gata  Nijar
+pan_spaS_010	Cabo  de  Gata  Nijar
+pan_spaS_011	Cabo  de  Gata  Nijar
+pan_spaS_012	Cabo  de  Gata  Nijar
+pan_spaS_013	Cabo  de  Gata  Nijar
+pan_spaS_014	Cabo  de  Gata  Nijar
+pan_spaS_015	Cabo  de  Gata  Nijar
+pan_spaS_016	Cabo  de  Gata  Nijar
+pan_spaS_017	Cabo  de  Gata  Nijar
+pan_spaS_018	Cabo  de  Gata  Nijar
+pan_spaS_019	Cabo  de  Gata  Nijar
+pan_spaS_020	Cabo  de  Gata  Nijar
+pan_spaS_021	Cabo  de  Gata  Nijar
+pan_spaS_022	Cabo  de  Gata  Nijar
+pan_spaS_024	Cabo  de  Gata  Nijar
+pan_spaS_025	Cabo  de  Gata  Nijar
+pan_spaS_026	Cabo  de  Gata  Nijar
+pan_spaS_027	Cabo  de  Gata  Nijar
+pan_spaS_028	Cabo  de  Palos
+pan_spaS_029	Cabo  de  Palos
+pan_spaS_030	Cabo  de  Palos
+pan_spaS_031	Cabo  de  Palos
+pan_spaS_032	Cabo  de  Palos
+pan_spaS_033	Cabo  de  Palos
+pan_spaS_034	Cabo  de  Palos
+pan_spaS_035	Cabo  de  Palos
+pan_spaS_036	Cabo  de  Palos
+pan_spaS_037	Cabo  de  Palos
+pan_spaS_038	Cabo  de  Palos
+pan_spaS_039	Cabo  de  Palos
+pan_spaS_040	Cabo  de  Palos
+pan_spaS_041	Cabo  de  Palos
+pan_spaS_042	Cabo  de  Palos
+pan_spaS_043	Cabo  de  Gata  Nijar
+pan_spaS_044	Cabo  de  Palos
+pan_spaS_045	Cabo  de  Palos
+pan_spaS_046	Cabo  de  Palos
+pan_spaS_047	Cabo  de  Palos
+pan_spaS_048	Cabo  de  Palos
+pan_spaS_049	Cabo  de  Palos
+pan_spaS_050	Cabo  de  Palos
+pan_spaS_051	Cabo  de  Palos
+pan_spaS_052	Cabo  de  Palos

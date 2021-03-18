@@ -3,7 +3,7 @@ Investigating the influence of fishing on male and female lobster.
 
 ## 1. Sampling
 
-<img align="center" height="600" src="01-sampling/sampling.png"></img>
+<img align="center" height="200" src="01-sampling/sampling.png"></img>
 
 ## 2. Outlier detection
 

@@ -105,12 +105,14 @@ sex_indv_no_self_no_na_subset %>%
 # avreage kinship per sex category
 sex_indv_no_self_no_na %>% group_by(SEX_CAT) %>% summarize(mean=mean(KINSHIP),sd=sd(KINSHIP))
 
+### Save the graph
+ggsave("Kinship_lobster_sex.pdf")
 
-### Make boxplot on categories
+ ### Make boxplot on categories
 sex_indv_no_self_no_na_subset %>%
   ggline(x = "SEX_CAT", y = "KINSHIP", 
          add = c("mean_se"), 
          ylab = "Kinship of Loiselle", xlab = "Comparison between genders")
 
 ### Save the graph
-ggsave("Kinship_lobster_sex.pdf")
+ggsave("Kinship_lobster_error_bar.pdf")

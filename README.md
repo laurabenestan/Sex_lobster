@@ -23,7 +23,7 @@ We observe complete panmixia, which is likely due to the life history traits of 
 We decide to look for population structure using the set of SNPs putatively under divergent selection by performing the script `adaptive_structure.R`.
 When we look at these highly differentiated regions of the genome, we highlight that 272 SNPs are linked to gender information, meaning that these markers are probably located to sex chromosome (hereafter called sex-linked markers) and in autosome.
 
-<img align="center" width="600" height="300" src="03-population_structure/Figure3ab.png"></img>
+<img align="center" width="800" height="300" src="03-population_structure/Figure3ab.png"></img>
 
 ## 4. Sex-linked markers
 

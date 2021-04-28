@@ -25,7 +25,11 @@ When we look at these highly differentiated regions of the genome, we highlight 
 
 <img align="center" width="800" height="300" src="03-population_structure/Figure3ab.png"></img>
 
-## 4. Sex-linked markers
+## 4. Sex-bias dispersal
+
+
+
+## 5. Sex-linked markers
 
 Genetic diversity, which reflects the potential of a species to cope with environmental change, is significantly different if we include this sex-linked markers than if we remove it, meaning that, without gender information, we may have biased our genetic diversity estimates and then make wrong recommendation for conservation planning.
 

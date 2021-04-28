@@ -27,7 +27,11 @@ When we look at these highly differentiated regions of the genome, we highlight 
 
 ## 4. Sex-bias dispersal
 
+According to theory, polygamous mating systems tend to trigger male-bias dispersal but studies on sex-biased in the marine realm have only focused on fish (Hutchings and Gerber 2002), sharks (Pardini et al. 2001) and marine mammals (Möller and Beheregaray 2004, Ball et al. 2017), with little attention to marine invertebrate (Teske et al. 2012) and never on crustacean. 
+Population genetic theory predicts that the amount of relatedness and genetic differentiation is higher for the sex that disperse the less while the sex that disperse the most can show complete panmixia. 
+Here, we estimated FST and relatedness values in order to test this theory on our dataset.
 
+<img align="center" width="800" height="300" src="03-population_structure/Figure4.png"></img>
 
 ## 5. Sex-linked markers
 

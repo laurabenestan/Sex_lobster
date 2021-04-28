@@ -19,7 +19,7 @@ library(dplyr)
 library(viridis)
 
 ### Download data 
-data <- read.pcadapt("../00-data-dryad/83372snps_243ind.recode.vcf", type = "vcf")
+data <- pcadapt::read.pcadapt("../00-data-dryad/83372snps_243ind.recode.vcf", type = "vcf")
 ind <- read.table("../00-data-dryad/83372snps_243ind.tfam")
 ind_pop_mpa <- read.table("../00-data/population_map_palinurus_243ind_mpa.txt", header=TRUE, sep="\t")
 sex <- read.table("../00-data/256ind_palinurus_sex.txt", sep="\t")
@@ -54,12 +54,12 @@ g1 <- sex_pcadapt %>%
 ggplot(aes(x=PC1, y=PC2, fill= MPA))+
          geom_point(size=2, shape=21)+
   scale_fill_brewer(palette="Accent")+
-  theme_classic()+
+  theme_bw()+
   xlab("PC1")+
   ylab("PC2")
 
 ### Save the graph
-ggsave("PCAdapt_MPA.pdf", width = 10, height=5)
+ggsave("FigureS1.pdf", width = 5, height=5)
 
 ### Pick up nice colorblind palette
 col2 <- c("#D55E00", "#009E73")
@@ -72,15 +72,18 @@ g2 <- subset_sex %>%
   ggplot(aes(x=PC1, y=PC2, fill= SEX))+
   geom_point(size=2, shape=21)+
   scale_fill_manual(values=col2)+
-  theme_classic()+
+  theme_bw()+
   xlab("PC1")+
   ylab("PC2")
 
+### Save the graph
+ggsave("FigureS2.pdf", width = 5, height=5)
+
 ### Combine the graphs
-cowplot::plot_grid(g1,g2)
+cowplot::plot_grid(g1,g2, labels = "auto", nrow=2)
 
 ### Save the graph
-ggsave("FigureS1.pdf", width = 5, height=5)
+ggsave("FigureS12.pdf", width = 5, height=10)
 
 ### To get e.g. list of p-values:
 snps_pvalues <- cbind(snp, data_pcadapt$pvalues)

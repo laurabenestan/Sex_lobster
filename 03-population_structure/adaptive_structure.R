@@ -1,3 +1,16 @@
+' --------------------------------------------------------------------------   @Header
+#'
+#' @title Sampling for Palinurus elephas according to gender
+#'
+#' @description
+#' This R script
+#'
+#' @author   Laura Benestan, \email{lmbenestan@gmail.com}
+#'
+#' @date 2021/03/15
+#'
+#' --------------------------------------------------------------------------   @libraries
+
 ### Download libraries
 library(hierfstat)
 library(mapdata)
@@ -11,14 +24,16 @@ library(gridExtra)
 library(dplyr)
 library(cowplot)
 library(viridis)
+library(forcats)
+library(colorBlindness)
 
 ################### FILTERING STEPS IN R ##################
 
 ### Download vcf
-vcf <- vcfR::read.vcfR("../../../00-Datasets/03-Adaptive/833snps_243ind_pcadapt.recode.vcf")
+vcf <- vcfR::read.vcfR("../00-data/833snps_243ind_pcadapt.recode.vcf")
 
 ### Download pop info
-pop <- read.table("../../../00-Datasets/04-Environmental_data/population_map_palinurus_243ind_mpa.txt", header=TRUE, sep="\t", stringsAsFactors = TRUE)
+pop <- read.table("../00-data/population_map_palinurus_243ind_mpa.txt", header=TRUE, sep="\t", stringsAsFactors = TRUE)
 
 ### Transform vcf to genind
 genind <- vcfR::vcfR2genind(vcf)
@@ -31,7 +46,7 @@ genind@pop <- pop$STRATA
 ########### DPCA without a priori ######
 
 ## Use Bayesian Information Criterion on your filtered dataset.
-grp_all <- find.clusters(genind, max.n.clust=10, n.pca=nInd(genind)/3) # select N/3
+grp_all <- find.clusters(genind, max.n.clust=5, n.pca=nInd(genind)/3) # select N/3
 # Select K =2
 
 ### Observe the statistics
@@ -44,8 +59,8 @@ grp_all$size
 dapc <- dapc(genind, grp_all$grp,n.pca=nInd(genind)/3, nda=1)
 # Choose the 1 discriminant function to retain.
 
-### Give a colorblind palet.
-col2 <- c("#88CCEE", "#CC6677")
+### Pick up nice colorblind palette
+col2 <- c("#D55E00", "#009E73")
 
 ### Check the result 
 dpca_result <- scatter(dapc, col=col2)
@@ -58,12 +73,34 @@ compoplot(dapc,col=col2,cleg=.6, posi=list(x=0,y=1.2), lab=loci.individuals.maf.
 dapc_compoplot <- as.data.frame(dapc$posterior)
 dapc_compoplot$IND <- row.names(dapc_compoplot)
 
+### Add sex info
+sex <- read.table("../00-data/256ind_palinurus_sex.txt")
+colnames(sex) <- c("IND","SEX")
+
 ### Combine dapc and sex info
-dapc_compoplot_sex <- merge(dapc_compoplot, dapc_sex_all_info, by="IND")
+dapc_compoplot_sex <- merge(dapc_compoplot, sex, by="IND")
 dapc_compoplot_sex_ggplot <- gather(dapc_compoplot_sex, CLUSTER,value, `1`:`2`)
 
+### Make a graph with all individuals
+compoplot_ind <- dapc_compoplot_sex_ggplot %>%
+  mutate(IND = fct_reorder(IND,value)) %>%
+  ggplot() +
+  geom_bar(aes(x = IND, y = value, fill = CLUSTER),stat="identity", width = 1, color="lightgrey")  +
+  scale_fill_manual(values = col2) +
+  guides(fill = "none") +
+  labs(y = "Posterior membership probabilities") +
+  theme(axis.ticks.x = element_blank(),
+        axis.text.x = element_blank(),
+        axis.title.x = element_blank(),
+        panel.background = element_blank())+ facet_wrap(~SEX, scales = "free")
+
+### Subset only male and female
+dapc_compoplot_sex_final <- subset(dapc_compoplot_sex_ggplot, subset=dapc_compoplot_sex_ggplot$SEX=="Female"|dapc_compoplot_sex_ggplot$SEX=="Male")
+
 ### Make a graph
-compoplot_ggplot <- ggplot(dapc_compoplot_sex_ggplot) +
+compoplot_sex <- dapc_compoplot_sex_final %>%
+  mutate(IND = fct_reorder(IND,value)) %>%
+  ggplot() +
   geom_bar(aes(x = IND, y = value, fill = CLUSTER),stat="identity", width = 1)  +
   scale_fill_manual(values = col2) +
   guides(fill = "none") +
@@ -71,84 +108,32 @@ compoplot_ggplot <- ggplot(dapc_compoplot_sex_ggplot) +
   theme(axis.ticks.x = element_blank(),
         axis.text.x = element_blank(),
         axis.title.x = element_blank(),
-        panel.background = element_blank())+ facet_wrap(~GENDER, scales = "free")
+        panel.background = element_blank())+ facet_wrap(~SEX, scales = "free")
+compoplot_sex
+
+### Save the graph
+ggsave("Figure3.pdf", width=10, height=5)
 
 ### Extract DPCA information 
 dapc$IND <- row.names(dapc$ind.coord)
 dapc_info <- as.data.frame(cbind(dapc$IND, dapc$ind.coord, grp_all$grp))
 colnames(dapc_info) <- c("IND","DPC1", "K")
 
-### Add a site info by keeping only the three letters of the individual names
-dapc_info$SITE <- substr(compoplot_ggplot, 1,3)
-dapc_info 
-
 ### Merge the results with sex info
 dapc_sex <- merge(dapc_info, sex, by="IND")
 
 ### Remove NA and Ind individuals
-dapc_sex_all_info <- filter(dapc_sex, GENDER!="Ind")
+dapc_sex_all_info <- filter(dapc_sex, SEX!="Ind")
 
 ### Create geom_density
-piechart_dapc <- ggplot(compoplot_ggplot, aes(x="", y=K, fill=K)) +
+ggplot(dapc_sex_all_info, aes(x="", y=K, fill=K)) +
   geom_bar(stat="identity", width=1) +
-  facet_wrap(~GENDER)+
+  facet_wrap(~SEX)+
   coord_polar("y", start=0)+
   theme_bw()+
   scale_fill_manual(values=col2)+
   xlab("")
-ggsave("Male_female_piechart.pdf")
-
-################### VISUALIZE RESULTS ##################
-pdf("Fig2.pdf",width=10, height=10)
-plot_grid(compoplot_ggplot, piechart_dapc, nrow=2,labels=c("A", "B"))
-dev.off()
-
-#################### Create a map #####
-### Import geographic coordinates file
-sites <-read.table("env_geo_palinurus_243ind.txt",header=TRUE, dec=".",sep="\t",na.strings="NA",strip.white=T)
-summary(sites)
-
-### Download sex info
-sex <- read.table("../../../02-Sex/256ind_palinurus_sex.txt")
-colnames(sex) <- c("IND","GENDER")
-
-### Merge sites and sex
-sites_sex <- merge(sites, sex, by="IND")
-length(which(is.na(sites_sex$GENDER)))
-sites_sex %>% group_by(GENDER) %>%
-  tally()
-
-### Remove Na and Ind
-target <- c("Female", "Male")
-sites_sex2 <- sites_sex %>% filter(GENDER %in% target)
-
-### Count the number of samples per lattitude and longitude points
-sites_number <- sites_sex2 %>% group_by(LAT,LON,GENDER) %>%
-  tally()
-
-# Download the map for the Mediterranean Sea
-wH <- map_data("worldHires",  xlim=c(-8,37), ylim=c(29.5,47)) # subset polygons surrounding med sea
-
-### Map
-x_title="Longitude"
-y_title="Latitude"
-map_lobster <- ggplot() +
-  geom_polygon(data = wH, aes(x=long, y = lat, group = group), fill = "gray80", color = NA) +
-  coord_fixed(xlim=c(-8,8), ylim=c(35.5,46.5), ratio=1.2)+
-  theme(panel.background = element_rect(fill = "white", colour = "black"),
-        axis.title = element_blank())+
-  geom_point(aes(x = LON, y = LAT,size=n, color=GENDER), data=sites_number,shape = 19,alpha = 0.5)+
-  xlab("Longitude") + ylab("Latitude") +
-  theme_bw()+ 
-  scale_color_manual(values=col2, name="Gender")+
-  facet_wrap(~GENDER)+
-  theme(axis.text.x=element_text(colour="black",size=14))+
-  theme(axis.text.y=element_text(colour="black", size=14))+
-  theme(axis.title=element_text(colour="black",size=14))
-map_lobster
-
-### Save the map
-ggsave("Map_lobster.pdf",width=10, height=10)
+ggsave("Male_female_piechart_dapc.pdf")
 
 ################### ADMIXTURE IN R ##################
 
@@ -177,7 +162,7 @@ x_title="K"
 y_title="Cross-validation error" 
 cross_validation <- ggplot(CV2, aes(x=CLUSTER,y=CV,group=1))+
   geom_point()+ geom_line(linetype = "dashed")+ 
-  scale_x_continuous(breaks = seq(0, 10, by = 1))+
+  scale_x_continuous(breaks = seq(0, 25, by = 1))+
   labs(title=graph_title)+ labs(x=x_title)+ labs(y=y_title)+ 
   theme_classic()
 cross_validation
@@ -205,23 +190,16 @@ admixture <- cbind(pop,admixture)
 colnames(admixture) <- c("IND","POP","K1","K2")
 
 ### Transform the admixture object into a long format.
-admixture_long <- melt(admixture,id.vars=c("IND","POP"),variable.name="ANCESTRY",value.name="PERC")
-names(admixture_long)
+admixture_long <- reshape::melt(admixture,id.vars=c("IND","POP"),variable.name="ANCESTRY",value.name="PERC")
+colnames(admixture_long) <- c("IND","POP","ANCESTRY","PERC")
 class(admixture_long$ANCESTRY)
 levels(admixture_long$ANCESTRY)
-
-### Subset only the individuals with about 50% of ancestry with one genetic cluster
-admixture_50 <- subset(admixture, subset=admixture$K1>0.40&admixture$K1<0.60)
-dim(admixture_50)
-
-### Keep only individuals assigned to more than 10% to a genetic cluster
-admixture_long_info <- subset(admixture_long, subset=admixture_long$PERC >=0.10)
 
 ### Make a **graph with ADMIXTURE results**.
 graph_title="Stacked barplot of Admixture analysis in species"
 x_title="Individuals"
 y_title="Ancestry"
-mpa_ancestry<-ggplot(admixture_long_info,aes(x=POP,y=PERC,fill=ANCESTRY))
+mpa_ancestry<-ggplot(admixture_long,aes(x=POP,y=PERC,fill=ANCESTRY))
 mpa_ancestry+geom_bar(stat="identity")+
   scale_fill_manual(values=col2, name= "K", labels=c("K1","K2"))+ 
   labs(y=y_title)+
@@ -244,14 +222,14 @@ head(admixture_results)
 admixture_sex <- merge(admixture, sex, by="IND")
 
 ### Create geom_density
-ggplot(admixture_sex, aes(x="", y=CLUSTER, fill=CLUSTER)) +
+ggplot(admixture_sex, aes(x="", y=max, fill=CLUSTER)) +
   geom_bar(stat="identity", width=1) +
-  facet_wrap(~GENDER)+
+  facet_wrap(~SEX)+
   coord_polar("y", start=0)+
   theme_bw()+
   scale_fill_manual(values=col2)+
   xlab("")
-ggsave("Male_female_piechart.pdf")
+ggsave("Male_female_piechart_admixture.pdf")
 
 ### Save the files.
 write.table(admixture_results, 'Admixture_results_K2.txt',quote=FALSE, row.names=FALSE, sep="\t", dec=".")
@@ -263,8 +241,7 @@ library(pophelper)
 packageDescription("pophelper", fields="Version")
 
 ### Import labels for sampling sites
-labset <- read.table("../../00-Datasets/04-Environmental_data/population_map_palinurus_243ind_mpa.txt", header=TRUE,stringsAsFactors=F)
-labset$REGIONS <- sites$LAT
+labset <- read.table("../00-data/population_map_palinurus_243ind_mpa.txt", sep="\t",header=TRUE,stringsAsFactors=F)
 labset_order = labset[,2,drop=FALSE] # very important step for setting labels
 labset_order$STRATA <- as.character(labset_order$STRATA)
 
@@ -273,12 +250,27 @@ sapply(labset, is.character)
 class(labset)
 
 ### Load admixture file
-slist <- readQ("25230snps_243ind.2.Q",filetype="basic")
+slist <- readQ("833snps_243ind_pcadapt.2.Q",filetype="basic")
+
+### Sort the labels
+labset_order$STRATA <-factor(labset_order$STRATA, levels = c("Cabo  de  Palos", 
+                                                             "Cabo  de  Gata  Nijar", 
+                                                             "Illa  de  Tabarca",
+                                                             "Illes  Columbretes",
+                                                             "Llevant  de  Mallorca",
+                                                             "Norte  de  Menorca",
+                                                             "Cap  de  Creus",
+                                                             "Cerbere  Banyuls"))
+
+### Check if labels are a character data type.
+sapply(labset_order, is.character)
+class(labset)
+labset_order$STRATA <- as.character(labset_order$STRATA)
 
 ### Create a qplot for K = 2 considering two species.
 slist1 <- alignK(slist[1]) 
 admixture_plot <- plotQ(slist1,  clustercol= col2,grplab = labset_order, grplabsize=1.5,
-      showsp=FALSE,ordergrp=T,imgtype="pdf",selgrp="V3",
+      showsp=FALSE,ordergrp=T,imgtype="pdf",
       showlegend=TRUE, legendpos="right", legendkeysize = 4, legendtextsize = 4,
       legendmargin=c(2,2,2,0), width=20, height=4,sortind="all")
 
@@ -297,10 +289,7 @@ dapc_admixture %>% group_by(CONVERGENCE) %>%
 sex_dapc_admixture <- merge(dapc_admixture, sex, by="IND")
 
 ### Compare both analyses
-sex_dapc_admixture %>% group_by(GENDER,K) %>%
+sex_dapc_admixture %>% group_by(SEX,K) %>%
   tally()
-sex_dapc_admixture %>% group_by(GENDER,CLUSTER) %>%
+sex_dapc_admixture %>% group_by(SEX,CLUSTER) %>%
   tally()
-
-################### VISUALIZE RESULTS ##################
-plot_grid(map_lobster, dpca_result)

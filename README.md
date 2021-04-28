@@ -11,7 +11,7 @@ We use `pcadapt`to test for local adaptation in *P. elephas*.
 We apply a conservative cut-off by selecting only markers in the top 1% of the P-values distribution.
 We discover a total of 833 snps putatively under divergent selection out of 83372snps genotyped on 243 individuals.
 
-<img align="center" width="300" height="500" src="02-outlier_detection/FigureS12.png"></img>
+<img align="center" width="200" height="500" src="02-outlier_detection/FigureS12.png"></img>
 
 ## 3. Population structure
 
@@ -23,7 +23,7 @@ We observe complete panmixia, which is likely due to the life history traits of 
 We decide to look for population structure using the set of SNPs putatively under divergent selection by performing the script `adaptive_structure.R`.
 When we look at these highly differentiated regions of the genome, we highlight that 272 SNPs are linked to gender information, meaning that these markers are probably located to sex chromosome (hereafter called sex-linked markers) and in autosome.
 
-<img align="center" height="600" src="03-population_structure/adaptive_structure.png"></img>
+<img align="center" height="600" src="03-population_structure/Figure3_ab.png"></img>
 
 ## 4. Sex-linked markers
 

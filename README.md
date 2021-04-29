@@ -43,16 +43,10 @@ We detect a subtle difference, males being less relative than female, but it tur
 Using a logistic regression, we identify a total of 277 SNPs putatively linked to sex chromosomes, out of the 833 adaptive SNPs originally detected. 
 We estimate the genetic diversity among these markers using the 277 SNPs, 556 SNPS (833 - 277 SNPs) and the 25,230 SNPs previously developed in Benestan et al. (2021).
 
-<img align="center" height="600" src="03-population_structure/relatedness.png"></img>
+<img align="center" height="600" src="05-sex-linked-markers/Figure5.png"></img>
 
 
-<img align="center" height="400" src="04-dbrda/db-rda.png"></img>
-
-We uncover a difference in genetic diversity between males and females, females show higher genetic diversity than male, even when we consider non sex-linked markers.
-We hypothesize that fishing pressure may be greater on male lobsters than on female lobsters, which may explain the loss of genetic diversity estimated for this sex compared to females 
-
-<img align="center" height="600" src="06-genetic_diversity/het_adaptive_sex.png"></img>
-
+We uncover a difference in genetic diversity between males and females, females show higher genetic diversity than male, even when we consider moderate sex-linked markers.
 To complement this analysis, we estimate the effective size of the females and males separately, using [COLONY](https://www.zsl.org/science/software/colony). 
 
 ----------------------------------------------------------------------------------------------------

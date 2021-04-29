@@ -110,3 +110,21 @@ female_male %>%
   stat_compare_means(method= "wilcox.test")
 
 ggsave("Figure4.pdf",width=8, height=5)
+
+##### GENETIC DIVERSITY WITH ADEGENET ########
+
+### Read vcf
+vcf <- read.vcfR("../00-data-dryad/556snps-243ind-palinurus.recode.vcf")
+
+### Transform vcf to genind
+genind_langouste <- vcfR2genind(vcf)
+
+#### Keep only male
+male <- subset(sex, subset=sex$STRATA=="Male")
+genind_male <- genind_langouste[i=male$INDIVIDUALS]
+summary(genind_male)
+
+#### Keep only female
+female <- subset(sex, subset=sex$STRATA=="Female")
+genind_female <- genind_langouste[i=female$INDIVIDUALS]
+summary(genind_female)

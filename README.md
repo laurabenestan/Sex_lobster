@@ -21,7 +21,7 @@ Using ADMIXTURE and a Discriminant Analysis of Principal Components (DAPC) avail
 We observe complete panmixia, which is likely due to the life history traits of this species (e.g. long pelagic duration phase). This result consider all the putatively neutral genetic markers (25230 SNPs).
 
 We decide to look for population structure using the set of SNPs putatively under divergent selection by performing the script `adaptive_structure.R`.
-When we look at these highly differentiated regions of the genome, we highlight that 272 SNPs are linked to gender information, meaning that these markers are probably located to sex chromosome (hereafter called sex-linked markers) and in autosome.
+When we look at these highly differentiated regions of the genome, we highlight that 277 SNPs are linked to gender information, meaning that these markers are probably located to sex chromosome (hereafter called sex-linked markers) and in autosome.
 
 <img align="center" width="600" height="200" src="03-population_structure/Figure3ab.png"></img>
 

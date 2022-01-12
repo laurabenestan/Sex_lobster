@@ -1,5 +1,3 @@
-setwd("~/Documents/CEFE Langouste")
-
 ### Dowload librairies
 library(adegenet)
 library(ade4)
@@ -12,49 +10,67 @@ library(viridis)
 library(snpStats)
 library(dplyr)
 library(VariantAnnotation)
+library(vcfR)
+library(dplyr)
 
 ### Load PCadapt outlier names
-outliers<-unlist(read.table("02-Adaptive_SNPs/01-PCA_adapt/833pcadapt_id_palinurus.txt", sep='\t', header=F))
+outliers<-unlist(read.table("02-outlier_detection/833snps_outliers.txt", sep='\t', header=F))
 
 ### Download sex data
-sex <- read.table("02-Sex/256ind_palinurus_sex.txt", sep="\t")
+sex <- read.table("00-data/256ind_palinurus_sex.txt", sep="\t")
 colnames(sex) <- c("IND", "Sex")
 
 ### Load genetic data for the 833 outlier loci
-vcf <- read.vcfR("00-Datasets/03-Adaptive/833snps_243ind_pcadapt.recode.vcf")
+vcf <- read.vcfR("02-outlier_detection/833snps_243ind_pcadapt.recode.vcf")
 ### Convert the vcf data in SNPs count matrix (0,1,2)
 genind <- vcfR2genind(vcf)@tab
 odd <- seq(1,1666,2)
 snps <- cbind(rownames(genind), genind[,odd])
 colnames(snps)[1] <- "IND"
 
-write.table(snps, "02-Sex/833snps_243ind_pcadapt.AlleleCount.txt", sep="\t")
+write.table(snps, "07-Sex Environment/833snps_243ind_pcadapt.AlleleCount.txt", sep="\t")
 
 ### Match sex with SNP data
-snps_sex <- merge(snps, sex, by="IND")
+snps_sex <- merge(snps, sex, by="IND") %>%
+  # remove individual with unknown sex
+  filter(Sex %in% c("Female", "Male")) %>% 
+  # make all columns numerical (except Sex and IND)
+  mutate_at(2:834, as.numeric) %>% 
+  # make sex factor
+  mutate_at(835, as.factor)
+  
 
 ### Do the logistic regression
 
 ## Prepare result matrices
-results <- matrix(0, 3, ncol(snps))
-rownames(results) <- c("Loci","t_val", "Pr(>|t|)")
+results <- as.data.frame(matrix(0, 3, ncol(snps)))
+rownames(results) <- c("Loci","z_val", "Pr(>|z|)")
 
 ### Run the regressions
-for (i in 2:ncol(snps)) { # For each locus
-  y_i <- snps_sex[,i]
-  mod_i <- lm(y_i ~ ., data=cbind.data.frame(y_i, snps_sex$Sex))
+for (i in 2:834) { # For each locus
+  dat_i <- snps_sex[,c(i,835)]
+  locus_i <- colnames(snps_sex)[i]
+  colnames(dat_i) <- c("Y", "Sex")
+  mod_i <- glm(Y ~ Sex, data=dat_i, family="poisson")
   
   #Fill result matrix
-  results[1,i] <- colnames(snps)[i]
-  results[2:3,i] <- summary(mod_i)$coefficients[2,c("t value", "Pr(>|t|)")]
+  results[1,(i-1)] <- locus_i
+  results[2:3,(i-1)] <- summary(mod_i)$coefficients[2,c("z value", "Pr(>|z|)")]
   
-  rm(x_i)
+  rm(dat_i)
   rm(mod_i)
 }
 
-write.table(results, file="Logistic_Regression_SNPs_outliers_PCAadapt_results.txt", sep="\t")
+write.table(results, file="07-Sex Environment/Logistic_Regression_SNPs_outliers_PCAadapt_results.txt", sep="\t")
 
 ### Loci correlated to Sex for each set of outliers (pval<0.01 for t test)
 #### Threshold 0.01 
-candidates <- results[,which(as.numeric(results[3,])<0.01)] # 278 loci
-write.table(candidates, file="SNP_correlated_to_sex_278.txt", sep="\t")
+candidates <- results[,which(as.numeric(results[3,])<0.01)] %>%
+  t(.) %>%
+  as.data.frame(.) # 289 loci
+write.table(candidates, file="05-sex-linked-markers/SNP_correlated_to_sex_289.txt", sep="\t", row.names=F)
+
+cand_old <- read.table("05-sex-linked-markers/SNP_correlated_to_sex_278.txt", sep="\t")
+setdiff(cand_old$V1, candidates$Loci) # 3
+setdiff(candidates$Loci, cand_old$V1) # 15
+intersect(cand_old$V1, candidates$Loci) # 274

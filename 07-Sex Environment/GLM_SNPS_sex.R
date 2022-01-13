@@ -1,4 +1,4 @@
-### Dowload librairies
+### Download libraries
 library(adegenet)
 library(ade4)
 library(ggplot2)
@@ -40,17 +40,19 @@ snps_sex <- merge(snps, sex, by="IND") %>%
   mutate_at(835, as.factor)
   
 
-### Do the logistic regression
+### GLM with Poisson distribution
 
 ## Prepare result matrices
-results <- as.data.frame(matrix(0, 3, ncol(snps)))
+results <- as.data.frame(matrix(0, 3, 833))
 rownames(results) <- c("Loci","z_val", "Pr(>|z|)")
 
-### Run the regressions
+### Run the models
 for (i in 2:834) { # For each locus
-  dat_i <- snps_sex[,c(i,835)]
-  locus_i <- colnames(snps_sex)[i]
+  dat_i <- snps_sex[,c(i,835)] # dataset with Locus i and explanatory variable
+  dat_i <- dat_i[complete.cases(dat_i),]
+  locus_i <- colnames(snps_sex)[i] # name of locus i
   colnames(dat_i) <- c("Y", "Sex")
+  # Fit the model
   mod_i <- glm(Y ~ Sex, data=dat_i, family="poisson")
   
   #Fill result matrix
@@ -61,16 +63,12 @@ for (i in 2:834) { # For each locus
   rm(mod_i)
 }
 
-write.table(results, file="07-Sex Environment/Logistic_Regression_SNPs_outliers_PCAadapt_results.txt", sep="\t")
+write.table(results, file="07-Sex Environment/GLM_SNPs_Sex_results.txt", sep="\t")
 
-### Loci correlated to Sex for each set of outliers (pval<0.01 for t test)
+### Loci correlated to Sex for each set of outliers (pval<0.01 for z test)
 #### Threshold 0.01 
 candidates <- results[,which(as.numeric(results[3,])<0.01)] %>%
   t(.) %>%
-  as.data.frame(.) # 289 loci
-write.table(candidates, file="05-sex-linked-markers/SNP_correlated_to_sex_289.txt", sep="\t", row.names=F)
+  as.data.frame(.) # 288 loci
+write.table(candidates, file="05-sex-linked-markers/SNP_correlated_to_sex_288.txt", sep="\t", row.names=F)
 
-cand_old <- read.table("05-sex-linked-markers/SNP_correlated_to_sex_278.txt", sep="\t")
-setdiff(cand_old$V1, candidates$Loci) # 3
-setdiff(candidates$Loci, cand_old$V1) # 15
-intersect(cand_old$V1, candidates$Loci) # 274

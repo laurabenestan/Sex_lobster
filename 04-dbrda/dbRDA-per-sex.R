@@ -22,6 +22,7 @@ library(dplyr)
 library(data.table)
 library(RColorBrewer)
 library(tidyr)
+library(tidyverse)
 library(fastDummies)
 library(ggplot2)
 
@@ -30,32 +31,42 @@ library(ggplot2)
 ### Genomic data to be used
 
 #import vcf file
-vcf <- read.vcfR("../../00-Datasets/03-Adaptive/556snps-243ind-palinurus.recode.vcf")
+vcf <- read.vcfR("00-data/545snps_243ind_outliers.recode.vcf")
 
 #Transform vcf to genind file
 data <- vcfR2genind(vcf)
 
-# Remove the individuals without sex information
-habitat <- read.table("../../00-Datasets/04-Environmental_data/sex_morpho_habitats_env_palinurus.txt", header=TRUE, sep="\t",dec=".")
+# Environmental data
+env <- read.table("00-data/env_geo_palinurus_243ind.txt", header=TRUE, sep="\t",dec=".")
+hab <- read.table("00-data/sex_morpho_habitats_env_palinurus.txt", header=TRUE, sep="\t",dec=".")
+
+# Sex data
+sex <- read.table("00-data/256ind_palinurus_sex.txt", sep="\t")
+colnames(sex) <- c("IND", "Sex")
+
 # create list of individuals (rows) to remove from @tab slot 
-remove1 <- habitat[which(habitat$Sex %in% c("Male", "Female") == F), "Label"]
-remove2 <- row.names(data@tab)[which(row.names(data@tab) %in% habitat$Label == F)]
+remove1 <- sex[which(sex$Sex %in% c("Male", "Female") == F), "IND"]
+remove2 <- row.names(data@tab)[which(row.names(data@tab) %in% sex$IND == F)]
 removeInd <- c(remove1,remove2)
 # remove individuals from *genind object*
 # note that in this step there's no longer a comma needed before the closing square bracket
 genind <- data[!row.names(data@tab) %in% removeInd]
 
-### Create one dataset for female and onne for male
-female <- habitat[which(habitat$Sex == "Female" ), "Label"]
-male <- habitat[which(habitat$Sex == "Male" ), "Label"]
+## Combine sex and environment data frame
+habitat <- env %>%
+  inner_join(sex, by = c("labels"="IND"))
+
+### Create one dataset for female and one for male
+female <- habitat[which(habitat$Sex == "Female" ), "labels"]
+male <- habitat[which(habitat$Sex == "Male" ), "labels"]
 genind_M <- genind[!row.names(genind@tab) %in% female]
 genind_F <- genind[!row.names(genind@tab) %in% male]
 
 ### Remove 20 males from the dataset at random to have the same number of individuals for both sexes
-removeM <- row.names(genind_M1@tab)[sample(seq(from = 1, to = 101, by = 1), size = 20, replace = FALSE)]
-genind_M <- genind_M1[!row.names(genind_M1@tab) %in% removeM]
+#removeM <- row.names(genind_M1@tab)[sample(seq(from = 1, to = 101, by = 1), size = 20, replace = FALSE)]
+#genind_M <- genind_M1[!row.names(genind_M1@tab) %in% removeM]
 
-male <- row.names(genind_M@tab)
+#male <- row.names(genind_M@tab)
 
 ### Calculate Euclidean distances
 distgenEUCL_M <- dist(genind_M, method = 
@@ -66,12 +77,10 @@ distgenEUCL_F <- dist(genind_F, method =
 
 ##### X = PCA ENV ####
 
-### Download the environmental matrix
-env = read.delim('../../00-Datasets/04-Environmental_data/Info_morpho_env_2089ind_all.txt', row.names=1, header=T, sep='\t')
-
 # Remove the variables that have a lot of NAs (all Salinity water columns)
-EnvMatrix1 <- env[,c(6:8,12:14,18:29)]
-EnvMatrix <- EnvMatrix1[complete.cases(EnvMatrix1),]
+EnvMatrix1 <- habitat[,c(1:4,8:10,14:25)]
+EnvMatrix <- EnvMatrix1[complete.cases(EnvMatrix1),] %>%
+  column_to_rownames(var="labels")
 
 # Select the palinurus individuals
 EnvMatrix_pal <- EnvMatrix[which(rownames(EnvMatrix) %in% row.names(genind@tab)),]
@@ -128,7 +137,7 @@ env_F <- pca_axis[which(rownames(pca_axis) %in% female),]
 #### X = MPA DUMMIES ####
 
 ### Add MPA info
-mpa <- read.table("../../00-Datasets/04-Environmental_data/distance_to_mpa_palinurus_235ind.txt", sep="\t", header=TRUE)
+mpa <- read.table("00-data/distance_to_mpa_palinurus_235ind.txt", sep="\t", header=TRUE)
 mpa <- mpa[which(mpa$IND %in% row.names(genind@tab)),]
 
 ### Create dummy variables
@@ -143,7 +152,7 @@ mpa_dummy_F <- mpa_dummy[which(rownames(mpa_dummy) %in% female),]
 #### X = HABITATS ####
 
 ### Select habitats per species
-habitat_select <- habitat[,c("Label","habitat_prediction","Depth", "Sex")]
+habitat_select <- hab[,c("Label","habitat_prediction","Depth", "Sex")]
 colnames(habitat_select) <-c("IND","Habitats", "Depth", "Sex")
 
 ### Produce dummy variables
@@ -178,11 +187,11 @@ plot(X_F[,1], X_F[,2])
 
 ###### Merge the datasets by row names
 dataf <- merge(X_F, env_F,  by=0, all.x = T)
-rownames(dataf) <- data1$Row.names
-X_F <- dataf[2:89]
+rownames(dataf) <- dataf$Row.names
+X_F <- dataf[2:88]
 datam <- merge(X_M, env_M,  by=0, all.x = T)
 rownames(datam) <- datam$Row.names
-X_M <- datam[2:102]
+X_M <- datam[2:101]
 
 ############### SELECT ENV ####
 
@@ -271,7 +280,7 @@ summary(rdamem, scaling=1)
 
 # Check the RDA summary
 RsquareAdj(rdamem)
-anova(rdaS, perm=10000)
+anova(rdamem, perm=10000)
 
 ############### SELECT INSIDE/OUTSIDE ####
 
@@ -280,8 +289,8 @@ inside_dummy <- fastDummies::dummy_cols(mpa, select_columns = "CATEGORY",remove_
 
 # Add the inside variable to the dataset
 row.names(inside_dummy) <- inside_dummy$IND
-inside_dummy_F <- inside_dummy[which(rownames(inside_dummy) %in% rownames(X_F)),]
-inside_dummy_M <- inside_dummy[which(rownames(inside_dummy) %in% rownames(X_M)),]
+inside_dummy_F <- inside_dummy[which(rownames(inside_dummy) %in% rownames(env_F)),]
+inside_dummy_M <- inside_dummy[which(rownames(inside_dummy) %in% rownames(env_M)),]
 
 #OrdiR2step will start working from an empty model without explanatory variables, just the intercept
 rda_category <-rda(X_F ~ inside_dummy_F$CATEGORY_OUTSIDE)
@@ -364,8 +373,8 @@ RsquareAdj(rdaPC3)
 anova(rdaPC3, perm=999)
 
 ### Keep only non collinear variables
-YfinalenvM <- select(YallselM, PC1, PC2,PC3, MEM5)
-YfinalenvF <- select(YallselF, PC1, PC2,PC3)
+YfinalenvM <- select(YallselM, PC1, PC2,PC3, MEM3, MEM4, MEM5)
+YfinalenvF <- select(YallselF, PC1, PC2,PC3, MEM3)
 
 ### Build the most significant model
 rdaM<- rda(X_M ~., YfinalenvM)
@@ -406,12 +415,12 @@ species_centroids$PC_names <- rownames(species_centroids)
 ### Add information of arrows
 continuous_arrows <- data.frame(scrs$biplot)
 continuous_arrows
-rownames(continuous_arrows) <- c("PC1","PC2","PC3","MEM5")
+rownames(continuous_arrows) <- c("PC1","PC2","PC3", "MEM3", "MEM4","MEM5")
                                  
 ### Add names of variables
 continuous_arrows$number <- rownames(continuous_arrows)
 continuous_arrows
-baseplot<-plot(rdaS, scaling = 2)
+baseplot<-plot(rdaM, scaling = 2)
 mult <- attributes(baseplot$biplot)$arrow.mul
 
 ### Add mpa names
@@ -456,12 +465,12 @@ species_centroids$PC_names <- rownames(species_centroids)
 ### Add information of arrows
 continuous_arrows <- data.frame(scrs$biplot)
 continuous_arrows
-rownames(continuous_arrows) <- c("PC1","PC2","PC3")
+rownames(continuous_arrows) <- c("PC1","PC2","PC3", "MEM3")
 
 ### Add names of variables
 continuous_arrows$number <- rownames(continuous_arrows)
 continuous_arrows
-baseplot<-plot(rdaS, scaling = 2)
+baseplot<-plot(rdaF, scaling = 2)
 mult <- attributes(baseplot$biplot)$arrow.mul
 
 ### Add mpa names
@@ -492,6 +501,6 @@ RDA_plotF <- ggplot(data = sites_centroids, aes(x = RDA1, y = RDA2))+
 RDA_plotF
 
 ### Combine both RDA on male and female
-pdf("Fig4.pdf",width = 10, height=5)
+pdf("04-dbrda/Fig4b.pdf",width = 10, height=5)
 cowplot::plot_grid(RDA_plotF,RDA_plotM)
 dev.off()

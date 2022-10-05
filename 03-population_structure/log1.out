@@ -1,0 +1,33 @@
+****                   ADMIXTURE Version 1.3.0                  ****
+****                    Copyright 2008-2015                     ****
+****           David Alexander, Suyash Shringarpure,            ****
+****                John  Novembre, Ken Lange                   ****
+****                                                            ****
+****                 Please cite our paper!                     ****
+****   Information at www.genetics.ucla.edu/software/admixture  ****
+
+Cross-validation will be performed.  Folds=10.
+Parallel execution requested.  Will use 8 threads.
+Random seed: 43
+Point estimation method: Block relaxation algorithm
+Convergence acceleration algorithm: QuasiNewton, 3 secant conditions
+Point estimation will terminate when objective function delta < 0.0001
+Will perform 2000 bootstrap resamplings to estimate standard errors.
+Reestimation for each bootstrap replicate will terminate at 3 iterations
+Size of G: 241x831
+Average base pair separation between consecutive markers: 0.0759036
+Block size that will be used for block bootstrap: 131746032
+Performing five EM steps to prime main algorithm
+1 (EM) 	Elapsed: 0.003	Loglikelihood: -113369	(delta): 250769
+2 (EM) 	Elapsed: 0.003	Loglikelihood: -113369	(delta): 0
+3 (EM) 	Elapsed: 0.003	Loglikelihood: -113369	(delta): 0
+4 (EM) 	Elapsed: 0.003	Loglikelihood: -113369	(delta): 0
+5 (EM) 	Elapsed: 0.003	Loglikelihood: -113369	(delta): -2.91038e-11
+Initial loglikelihood: -113369
+Starting main algorithm
+1 (QN/Block) 	Elapsed: 0.012	Loglikelihood: -113369	(delta): 2.91038e-11
+Summary: 
+Converged in 1 iterations (0.034 sec)
+Loglikelihood: -113369.499196
+CV error (K=1): 0.37455
+Bootstrap replicate #0

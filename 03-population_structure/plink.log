@@ -1,0 +1,26 @@
+PLINK v1.90b6.14 64-bit (7 Jan 2020)
+Options in effect:
+  --make-bed
+  --tfam out.tfam
+  --tped out.tped
+
+Hostname: laurabenestan-2.local
+Working directory: /Users/laurabenestan/Dropbox/04-Scientific_projects/08-Langouste/sex_lobster/00-data-dryad
+Start time: Wed Jan 19 16:05:13 2022
+
+Random number seed: 1642604713
+16384 MB RAM detected; reserving 8192 MB for main workspace.
+Processing .tped file.
+plink-temporary.bed + plink-temporary.bim + plink-temporary.fam written.
+831 variants loaded from .bim file.
+241 people (0 males, 0 females, 241 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to plink.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 241 founders and 0 nonfounders present.
+Calculating allele frequencies... done.
+Total genotyping rate is 0.889879.
+831 variants and 241 people pass filters and QC.
+Note: No phenotypes present.
+--make-bed to plink.bed + plink.bim + plink.fam ... done.
+
+End time: Wed Jan 19 16:05:14 2022

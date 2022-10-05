@@ -9,7 +9,7 @@ Investigating the influence of fishing on male and female lobster.
 
 We use `pcadapt`to test for local adaptation in *P. elephas*.
 We apply a conservative cut-off by selecting only markers in the top 1% of the P-values distribution.
-We discover a total of 833 snps putatively under divergent selection out of 83372snps genotyped on 243 individuals.
+We discover a total of 831 snps putatively under divergent selection out of 83372snps genotyped on 241 individuals.
 
 <img align="center" width="200" height="400" src="02-outlier_detection/FigureS12.png"></img>
 
@@ -18,7 +18,7 @@ We discover a total of 833 snps putatively under divergent selection out of 8337
 ### Adaptive population structure
 
 Using ADMIXTURE and a Discriminant Analysis of Principal Components (DAPC) available in the [adegenet package](https://www.rdocumentation.org/packages/adegenet/versions/2.0.1), we run our script `adaptive_structure`. 
-We observe complete panmixia, which is likely due to the life history traits of this species (e.g. long pelagic duration phase). This result consider all the putatively neutral genetic markers (25230 SNPs).
+We observe complete panmixia, which is likely due to the life history traits of this species (e.g. long pelagic duration phase). This result consider all the non outliers genetic markers (25230 SNPs).
 
 We decide to look for population structure using the set of SNPs putatively under divergent selection by performing the script `adaptive_structure.R`.
 When we look at these highly differentiated regions of the genome, we highlight that 277 SNPs are linked to gender information, meaning that these markers are probably located to sex chromosome (hereafter called sex-linked markers) and in autosome.
@@ -40,8 +40,9 @@ We detect a subtle difference, males being less relative than female, but it tur
 
 ## 5. Sex-linked markers
 
-Using a logistic regression, we identify a total of 277 SNPs putatively linked to sex chromosomes, out of the 833 adaptive SNPs originally detected. 
-We estimate the genetic diversity among these markers using the 277 SNPs, 556 SNPS (833 - 277 SNPs) and the 25,230 SNPs previously developed in Benestan et al. (2021).
+Using a logistic regression, we identify a total of 333 SNPs putatively linked to sex chromosomes, out of the 833 adaptive SNPs originally detected. 
+We estimate the genetic diversity among these markers using the sex-linked markers (333 SNPs), outliers (500 SNPS) and the non-outliers (25,230 SNPs)
+previously developed in Benestan et al. (2021).
 
 <img align="center" width="400" height="300" src="05-sex-linked-markers/Figure5.png"></img>
 
@@ -82,9 +83,4 @@ We observed a higher Ne values for male than female, but a lower interval values
 
 ## 5. Seascape genomics
 
-We remove highly differentiated sex-linked markers (putative Y linked) and consider each sex separately (female and male) to perform a distance-based analysis available in the package [vegan](https://www.rdocumentation.org/packages/vegan/versions/2.4-2/topics/capscale) with the script `dbRDA-per-sex.R`. 
-We find that males seems more influenced by the seascape than females, with seascape features explaining more genomic variation in males than in females (21% was explained by seascape features versus 12% in female). 
-
-Males tend to disperse more during the fishing season (April-May), and there is more competition for males than females during the mating season (August). We have individuals collected from April to December 2017, so we cover both seasons (fishing season and later, mating season). This particular behaviour (higher dispersal rate, more competition) of the males may partly explain why we found that the environment has a greater influence on the male than on the female. 
-
-
+We remove highly differentiated sex-linked markers (putative W-linked) and consider each sex separately (female and male) to perform a distance-based analysis available in the package [vegan](https://www.rdocumentation.org/packages/vegan/versions/2.4-2/topics/capscale) with the script `dbRDA-per-sex.R`. 

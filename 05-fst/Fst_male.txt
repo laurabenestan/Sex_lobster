@@ -1,0 +1,16 @@
+POP1	POP2	FST	N_MARKERS	CI_LOW	CI_HIGH
+Cap__de__Creus	Norte__de__Menorca	0	20269	0	8.339e-06
+Cap__de__Creus	Llevant__de__Mallorca	0	20719	0	0
+Cap__de__Creus	Illes__Columbretes	0	20435	0	0
+Cap__de__Creus	Cabo__de__Gata__Nijar	0.067297186	15609	0.064077025	0.068377496
+Cap__de__Creus	Cabo__de__Palos	0.013445055	18980	0.012878795	0.014074481
+Norte__de__Menorca	Llevant__de__Mallorca	0	22695	0	0
+Norte__de__Menorca	Illes__Columbretes	0	22579	0	0
+Norte__de__Menorca	Cabo__de__Gata__Nijar	0	20401	0	0
+Norte__de__Menorca	Cabo__de__Palos	0	21823	0	0
+Llevant__de__Mallorca	Illes__Columbretes	0	22815	0	0
+Llevant__de__Mallorca	Cabo__de__Gata__Nijar	0	20817	0	0
+Llevant__de__Mallorca	Cabo__de__Palos	0	22110	0	0
+Illes__Columbretes	Cabo__de__Gata__Nijar	0	20559	0	0
+Illes__Columbretes	Cabo__de__Palos	0	22036	0	0
+Cabo__de__Gata__Nijar	Cabo__de__Palos	0.00983787	19129	0.0081475	0.011316223

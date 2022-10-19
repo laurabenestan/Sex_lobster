@@ -1,0 +1,106 @@
+Missing data from input file 25230snps-79ind.txt.
+
+Possible four types of missing data at a locus:
+	1. Genotype contains only zeros or partially scored.
+	2. Genotype has less digits than normal one.
+	3. Genotype has more digits than normal one.
+	4. Genotype contains non-digit character.
+Types 3 and 4 stop the program.
+
+In the table, each row is for an individual with missing data
+(a) If column 'Locus' has only one number, then it is the first
+    locus with missing data and also of highest missing data type.
+(b) If column 'Locus' has 2 numbers, then the first number is
+    the first locus with data missing, and the second number is
+    the first locus that has highest missing data type.
+(c) Genotype column contains the genotype of the locus in case (a)
+    or the second locus in case (b).
+
+Population 1 [pal_bal_124]
+-----------------------------------------------------------
+Individual       Locus         Genotype     Number of Loci
+                                          with missing data
+       1           59           000000           174
+       2           33           000000           279
+       3          103           000000           259
+       4           86           000000           414
+       5          290           000000           250
+       6          318           000000           359
+       7          142           000000           238
+       8          197           000000           300
+       9           91           000000           275
+      10           54           000000           170
+      11          103           000000           287
+      12          174           000000           193
+      13          280           000000           223
+      14           83           000000           337
+      15          491           000000           152
+      16           86           000000           307
+      17           59           000000           163
+      18          119           000000           374
+      19           98           000000           412
+      20            6           000000           407
+      21          255           000000           298
+      22           16           000000           350
+      23          290           000000            42
+      24           88           000000           296
+      25            3           000000           274
+      26           49           000000           342
+      27           75           000000           302
+      28           26           000000           385
+      29           26           000000           274
+      30            3           000000           283
+      31           56           000000           279
+      32          133           000000           312
+      33          142           000000           157
+      34          308           000000           439
+      35           26           000000           428
+      36           26           000000           242
+      37          129           000000           433
+      38           42           000000           319
+      39          117           000000           291
+      40          390           000000           365
+      41           13           000000           371
+      42           13           000000           653
+      43           58           000000           316
+      44           91           000000           283
+      45           22           000000           310
+      46           24           000000           468
+      47           59           000000           288
+      48           33           000000           553
+      49           79           000000           319
+      50           42           000000           200
+      51           33           000000           316
+      52           59           000000           310
+      53           82           000000           332
+      54          161           000000           400
+      55           15           000000           465
+      56            2           000000           304
+      57         1106           000000           169
+      58           32           000000           426
+      59           24           000000           324
+      60           98           000000           388
+      61           88           000000           293
+      62          174           000000           369
+      63           31           000000           392
+      64           42           000000           179
+      65           91           000000           374
+      66          174           000000           564
+      67          192           000000           162
+      68           29           000000           329
+      69           38           000000           432
+      70          131           000000           408
+      71          117           000000           145
+      72           87           000000           528
+      73           14           000000           439
+      74            3           000000           442
+      75          174           000000           218
+      76          269           000000           175
+      77           47           000000           573
+      78           16           000000           490
+      79          205           000000           424
+      80           62           000000           379
+      81          267           000000           402
+-----------------------------------------------------------
+Total missing data for population    1:        26596
+

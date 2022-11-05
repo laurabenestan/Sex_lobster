@@ -43,7 +43,7 @@ Using a logistic regression, we identify a total of 333 SNPs putatively linked t
 We estimate the genetic diversity among these markers using the sex-linked markers (333 SNPs), outliers (500 SNPS) and the non-outliers (25,230 SNPs)
 previously developed in Benestan et al. (2021).
 
-<img align="center" width="400" height="300" src="05-sex-linked-markers/Figure5.png"></img>
+<img align="center" width="400" height="300" src="05-sex-linked-markers/Figure5_241ind.png"></img>
 
 
 We uncover a difference in genetic diversity between males and females, using the script `script-het-sex.r`.

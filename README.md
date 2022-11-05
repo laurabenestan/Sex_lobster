@@ -31,11 +31,10 @@ According to theory, polygamous mating systems tend to trigger male-bias dispers
 Population genetic theory predicts that the amount of relatedness and genetic differentiation is higher for the sex that disperse the less while the sex that disperse the most can show complete panmixia. 
 Here, we estimated FST and relatedness values in order to test this theory on our dataset.
 
-<img align="center" width="600" height="300" src="04-fst/Figure4.png"></img>
+<img align="center" width="600" height="300" src="04-fst/Figure4_241ind.png"></img>
 
 
 Then, we investigate the hypothesis of sex-bias dispersal by calculating the degree of relatedness for male and female, separately.
-We detect a subtle difference, males being less relative than female, but it turns out that this difference is not significant (Wilcoxon test, P-value = 0.10).
 
 
 ## 5. Sex-linked markers

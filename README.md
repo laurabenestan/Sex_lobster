@@ -11,7 +11,7 @@ We use `pcadapt`to test for local adaptation in *P. elephas*.
 We apply a conservative cut-off by selecting only markers in the top 1% of the P-values distribution.
 We discover a total of 831 snps putatively under divergent selection out of 83372snps genotyped on 241 individuals.
 
-<img align="center" width="200" height="400" src="02-outlier_detection/FigureS12.png"></img>
+<img align="center" width="200" height="400" src="02-outlier_detection/FigureS2_241ind.png"></img>
 
 ## 3. Population structure
 

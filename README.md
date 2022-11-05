@@ -39,11 +39,11 @@ Then, we investigate the hypothesis of sex-bias dispersal by calculating the deg
 
 ## 5. Sex-linked markers
 
-Using a logistic regression, we identify a total of 333 SNPs putatively linked to sex chromosomes, out of the 833 adaptive SNPs originally detected. 
-We estimate the genetic diversity among these markers using the sex-linked markers (333 SNPs), outliers (500 SNPS) and the non-outliers (25,230 SNPs)
+Using a logistic regression, we identify a total of 331 SNPs putatively linked to sex chromosomes, out of the 831 adaptive SNPs originally detected. 
+We estimate the genetic diversity among these markers using the sex-linked markers (331 SNPs), outliers (500 SNPS) and the non-outliers (25,230 SNPs)
 previously developed in Benestan et al. (2021).
 
-<img align="center" width="400" height="300" src="05-sex-linked-markers/Figure5_241ind.png"></img>
+<img align="center" width="400" height="300" src="06-sex-linked-markers/Figure5_241ind.png"></img>
 
 
 We uncover a difference in genetic diversity between males and females, using the script `script-het-sex.r`.
